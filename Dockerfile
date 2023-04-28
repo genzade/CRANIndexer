@@ -54,7 +54,7 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build $APP_PATH $APP_PATH
 
 # Run and own only the runtime files as a non-root user for security
-RUN useradd rails --home /rails --shell /bin/bash && \
+RUN useradd rails --home $APP_PATH --shell /bin/bash && \
   chown -R rails:rails db log storage tmp
 
 USER rails:rails
