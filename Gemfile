@@ -69,3 +69,8 @@ group :development do
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
+
+group :test do
+  gem "factory_bot_rails", "~> 6.2"
+  gem "shoulda-matchers", "~> 5.3"
+end
