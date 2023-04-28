@@ -1,17 +1,20 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.1.2.20
+ARG RUBY_VERSION=3.1.2
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
-# Rails app lives here
-WORKDIR /rails
+ENV APP_PATH /cran_indexer_app
+ENV RAILS_PORT 3000
 
-# Set production environment
-ENV RAILS_ENV="production" \
-  BUNDLE_DEPLOYMENT="1" \
-  BUNDLE_PATH="/usr/local/bundle" \
-  BUNDLE_WITHOUT="development"
+# Rails app lives here
+WORKDIR $APP_PATH
+
+# # Set production environment
+# ENV RAILS_ENV="production" \
+#   BUNDLE_DEPLOYMENT="1" \
+#   BUNDLE_PATH="/usr/local/bundle" \
+#   BUNDLE_WITHOUT="development"
 
 
 # Throw-away build stage to reduce size of final image
@@ -34,8 +37,8 @@ COPY . .
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+# RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
 # Final stage for app image
@@ -48,16 +51,18 @@ RUN apt-get update -qq && \
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rails /rails
+COPY --from=build $APP_PATH $APP_PATH
 
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --home /rails --shell /bin/bash && \
   chown -R rails:rails db log storage tmp
+
 USER rails:rails
 
 # Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+ENTRYPOINT ["./bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
+EXPOSE $RAILS_PORT
+
 CMD ["./bin/rails", "server"]
