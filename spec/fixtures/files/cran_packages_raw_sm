@@ -1,0 +1,38 @@
+Package: A3
+Version: 1.0.0
+Depends: R (>= 2.15.0), xtable, pbapply
+Suggests: randomForest, e1071
+License: GPL (>= 2)
+MD5sum: 027ebdd8affce8f0effaecfcd5f5ade2
+NeedsCompilation: no
+
+Package: cultevo
+Version: 1.0.2
+Imports: combinat, grDevices, graphics, Hmisc, pspearman, stats,
+        stringi, utils
+Suggests: memoise, knitr, rmarkdown
+License: MIT + file LICENSE
+MD5sum: 7e961472c95dc63acb43f9e56014f3d7
+NeedsCompilation: no
+
+Package: cumprinc
+Version: 0.1
+License: GPL (>= 2)
+MD5sum: 57b6a1578847f7784933c281fb470d46
+NeedsCompilation: no
+
+Package: cumSeg
+Version: 1.3
+Depends: lars
+License: GPL
+MD5sum: 1c85af9c8ba93b16dc04fac52eb43eae
+NeedsCompilation: no
+
+Package: cuperdec
+Version: 1.1.0
+Depends: R (>= 3.5.0)
+Imports: dplyr, ggplot2, magrittr, readr, rlang, tidyr
+Suggests: knitr, rmarkdown, testthat, tibble
+License: MIT + file LICENSE
+MD5sum: fdfcce1a5042c502ddab7811e32243ca
+NeedsCompilation: no

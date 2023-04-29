@@ -1,0 +1,86 @@
+Package: abbyyR
+Version: 0.5.5
+Depends: R (>= 3.2.0)
+Imports: httr, XML, curl, readr, plyr, progress
+Suggests: testthat, rmarkdown, knitr (>= 1.11), lintr
+License: MIT + file LICENSE
+MD5sum: e048a3bca6ea32126e6c367415c0bfaf
+NeedsCompilation: no
+
+Package: abc.data
+Version: 1.0
+Depends: R (>= 2.10)
+License: GPL (>= 3)
+MD5sum: 799079dbbdd0cfc9d9c61c3e35241806
+NeedsCompilation: no
+
+Package: abtest
+Version: 1.0.1
+Depends: R (>= 3.0.0)
+Imports: Rcpp (>= 0.12.14), mvtnorm, sn, qgam, truncnorm, plotrix,
+        grDevices, RColorBrewer, Matrix, parallel
+LinkingTo: Rcpp
+Suggests: testthat
+License: GPL (>= 2)
+MD5sum: 50168fec5da503d80fadff307e4bdf6e
+NeedsCompilation: yes
+
+Package: Ac3net
+Version: 1.2.2
+Depends: R (>= 3.3.0), data.table
+License: GPL (>= 3)
+MD5sum: 3bb784a260f3754e7c265660684ffbe0
+NeedsCompilation: no
+
+Package: accept
+Version: 1.0.0
+Depends: R (>= 3.6.0)
+Imports: stats, dplyr, reldist, splines
+Suggests: plotly, spelling
+License: GPL-3
+MD5sum: 4885f0c4036a0a76cfab59b42d81e3e6
+NeedsCompilation: no
+
+Package: BANOVA
+Version: 1.2.1
+Depends: R (>= 3.6.0)
+Imports: rjags(>= 3-13), runjags (>= 1.2.1-0), coda (>= 0.16-1),
+        rstan(>= 2.15.1), methods
+Suggests: knitr, rmarkdown
+License: GPL (>= 2)
+MD5sum: 89f3d7487c2c9a195507df0060226e7e
+NeedsCompilation: yes
+
+Package: bundle
+Version: 0.1.0
+Imports: glue, purrr, rlang, utils, withr
+Suggests: bonsai, butcher, callr, caret, covr, embed, h2o, keras,
+        kernlab, knitr, luz, MASS, modeldata, parsnip, recipes, renv,
+        rmarkdown, stacks, testthat (>= 3.0.0), tensorflow, torch,
+        torchvision, uwot, vetiver, workflows, xgboost
+License: MIT + file LICENSE
+MD5sum: 8b1d1a57524d615d889117f57d26b185
+NeedsCompilation: no
+
+Package: GDAtools
+Version: 2.0
+Imports: descriptio, FactoMineR, ggplot2, ggrepel, rlang
+Suggests: R.rsp, rmarkdown, knitr, rmdformats, TraMineR, sf, shiny,
+        miniUI, esquisse, rclipboard
+License: GPL (>= 2)
+MD5sum: 9253f481530a15b965829211cf488629
+NeedsCompilation: no
+
+Package: GenOrd
+Version: 1.4.0
+Depends: mvtnorm, Matrix, MASS, stats
+License: GPL
+MD5sum: 2e7771f55ab51f5950cb021fb0a546ac
+NeedsCompilation: no
+
+Package: varbin
+Version: 0.2.1
+Imports: rpart
+License: GPL (>= 2)
+MD5sum: d17d8f17c479bc1ba17a590604483caa
+NeedsCompilation: no
