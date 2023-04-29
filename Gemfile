@@ -72,5 +72,6 @@ end
 
 group :test do
   gem "factory_bot_rails", "~> 6.2"
+  gem "faker", "~> 3.1", ">= 3.1.1"
   gem "shoulda-matchers", "~> 5.3"
 end
