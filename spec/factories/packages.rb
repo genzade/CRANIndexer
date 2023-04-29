@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory(:package) do
     name { Faker::Name.name }
-    version { '1.0.0' }
+    version { "1.0.0" }
   end
 end
