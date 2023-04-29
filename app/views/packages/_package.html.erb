@@ -1,0 +1,51 @@
+<div id="<%= dom_id package %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= package.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Version:</strong>
+    <%= package.version %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Required r version:</strong>
+    <%= package.required_r_version %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Dependencies:</strong>
+    <%= package.dependencies %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date publication at:</strong>
+    <%= package.date_publication_at %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= package.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Authors:</strong>
+    <%= package.authors %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Maintainers:</strong>
+    <%= package.maintainers %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">License:</strong>
+    <%= package.license %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this package", package, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
