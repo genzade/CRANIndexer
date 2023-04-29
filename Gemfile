@@ -47,6 +47,8 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "deb_control", "~> 0.0.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mswin mswin64 mingw x64_mingw]
@@ -74,4 +76,6 @@ group :test do
   gem "factory_bot_rails", "~> 6.2"
   gem "faker", "~> 3.1", ">= 3.1.1"
   gem "shoulda-matchers", "~> 5.3"
+  gem "vcr", "~> 6.1"
+  gem "webmock", "~> 3.18", ">= 3.18.1"
 end

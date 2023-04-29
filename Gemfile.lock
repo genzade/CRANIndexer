@@ -97,6 +97,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.4)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -104,8 +106,11 @@ GEM
     builder (3.2.4)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.0)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     date (3.3.3)
+    deb_control (0.0.1)
     debug (1.7.2)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
@@ -121,6 +126,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hashdiff (1.0.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.5)
@@ -162,6 +168,7 @@ GEM
     parser (3.2.2.1)
       ast (~> 2.4.1)
     pg (1.4.6)
+    public_suffix (5.0.1)
     puma (6.2.2)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -249,11 +256,16 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    vcr (6.1.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.18.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -267,6 +279,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  deb_control (~> 0.0.1)
   debug
   error_highlight (>= 0.4.0)
   factory_bot_rails (~> 6.2)
@@ -285,7 +298,9 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
+  vcr (~> 6.1)
   web-console
+  webmock (~> 3.18, >= 3.18.1)
 
 RUBY VERSION
    ruby 3.1.2p20
