@@ -48,6 +48,8 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "deb_control", "~> 0.0.1"
+gem "sidekiq", "~> 7.0", ">= 7.0.9"
+gem "sidekiq-cron", "~> 1.10"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
