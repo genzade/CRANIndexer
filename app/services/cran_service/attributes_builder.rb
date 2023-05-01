@@ -57,8 +57,15 @@ module CranService
     end
 
     def authors
-      # dcf_hash["Author"].scan(/([\w\-\']{2,})([\s]+)([\w\-\']{2,})/).map(&:join)
-      Array.wrap(dcf_hash["Author"])
+      return [] if dcf_hash["Author"].blank?
+
+      dcf_hash["Author"]
+        .gsub(/\[.*?\]/, "") # remove square brackets and there contents
+        .gsub("\n", "")      # remove new lines
+        .strip               # remove leading and trailing whitespace
+        .squeeze(" ")        # remove duplicate spaces
+        .split(",")          # split on commas
+        .map(&:strip)        # remove leading and trailing whitespace from splitting on commas
     end
 
     def maintainers

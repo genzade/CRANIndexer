@@ -62,7 +62,7 @@ RSpec.describe Tasks::Cran::BuildRPackages, type: :task do
           an_object_having_attributes(
             name: "cultevo",
             version: "1.0.2",
-            authors: ["Kevin Stadler [aut, cre]"],
+            authors: ["Kevin Stadler"],
             date_publication_at: DateTime.parse("2018-04-24 10:28:19 UTC"),
             dependencies: nil,
             license: "MIT + file LICENSE",
@@ -73,7 +73,7 @@ RSpec.describe Tasks::Cran::BuildRPackages, type: :task do
           an_object_having_attributes(
             name: "cumprinc",
             version: "0.1",
-            authors: ["Jason Richardson [aut, cre] (<https://orcid.org/0000-0001-8166-7306>)"],
+            authors: ["Jason Richardson (<https://orcid.org/0000-0001-8166-7306>)"],
             date_publication_at: DateTime.parse("2022-11-30 11:20:08 UTC"),
             dependencies: nil,
             license: "GPL (>= 2)",
@@ -95,7 +95,7 @@ RSpec.describe Tasks::Cran::BuildRPackages, type: :task do
           an_object_having_attributes(
             name: "cuperdec",
             version: "1.1.0",
-            authors: ["James A. Fellows Yates [aut, cre]"],
+            authors: ["James A. Fellows Yates"],
             date_publication_at: DateTime.parse("2021-09-12 21:40:10 UTC"),
             dependencies: ["R (>= 3.5.0)"],
             license: "MIT + file LICENSE",

@@ -63,42 +63,50 @@ RSpec.describe CranService::PackageBuilder do
     end
   end
 
-  # ----
+  context "when data is not `UTF-8` encoded" do
+    it "creates a package record from gzip link string", vcr: "cran/BACprior_package_url" do
+      package_url = "https://cran.r-project.org/src/contrib/BACprior_2.1.tar.gz"
+      package_builder = CranService::PackageBuilder.new(package_url)
 
-  # it "creates a package record from gzip link string", vcr: "cran/Ac3net_package_url" do
-  #   package_url = "https://cran.r-project.org/src/contrib/Ac3net_1.2.2.tar.gz"
-  #   package_builder = CranService::PackageBuilder.new(package_url)
+      expect { package_builder.call }.to change(Package, :last)
+        .from(nil)
+        .to(
+          an_object_having_attributes(
+            name: "BACprior",
+            version: "2.1",
+            required_r_version: nil,
+            dependencies: %w[mvtnorm leaps boot],
+            date_publication_at: DateTime.parse("2022-05-02 19:12:02 UTC"),
+            title: "Choice of Omega in the BAC Algorithm",
+            authors: ["Denis Talbot", "Geneviève Lefebvre", "Juli Atherton"],
+            maintainers: ["Denis Talbot <denis.talbot@fmed.ulaval.ca>"],
+            license: "GPL (>= 2)"
+          )
+        )
+    end
+  end
 
-  #   expect { package_builder.call }.to change(Package, :last)
-  #     .from(nil)
-  #     .to(
-  #       an_object_having_attributes(
-  #         name: "Ac3net",
-  #         version: "1.2.2",
-  #         required_r_version: "R (>= 3.3.0)",
-  #         dependencies: ["R (>= 3.3.0)", "data.table"],
-  #         date_publication_at: DateTime.parse("2018-02-26 22:08:20 UTC"),
-  #         title: "Inferring Directional Conservative Causal Core Gene Networks",
-  #         authors: ["Gokmen Altay"],
-  #         maintainers: ["Gokmen Altay <altaylabs@gmail.com>"],
-  #         license: "GPL (>= 3)"
-  #       )
-  #     )
-  # end
+  context "when" do
+    it "creates a package record from gzip link string", vcr: "cran/breakaway_package_url" do
+      package_url = "https://cran.r-project.org/src/contrib/breakaway_4.8.4.tar.gz"
+      package_builder = CranService::PackageBuilder.new(package_url)
 
-  # context "when package already exists" do
-  #   it "does not create a new package record", vcr: "cran/Ac3net_package_url" do
-  #     create(
-  #       :package,
-  #       name: "Ac3net",
-  #       version: "1.2.2",
-  #       dependencies: ["R (>= 3.3.0)", "data.table"],
-  #     )
-  #     package_url = "https://cran.r-project.org/src/contrib/Ac3net_1.2.2.tar.gz"
-  #     package_builder = CranService::PackageBuilder.new(package_url)
-
-  #     package_builder.call
-  #     expect { package_builder.call }.not_to change(Package, :count)
-  #   end
-  # end
+      expect { package_builder.call }.to change(Package, :last)
+        .from(nil)
+        .to(
+          an_object_having_attributes(
+            name: "breakaway",
+            version: "4.8.4",
+            authors: ["Amy D Willis", "Bryan D Martin", "Pauline Trinh", "Sarah Teichman",
+                      "David Clausen", "Kathryn Barger", "John Bunge"],
+            date_publication_at: DateTime.parse("2022-11-22 09:10:27 UTC"),
+            dependencies: ["R (>= 3.5.0)"],
+            license: "GPL-2",
+            maintainers: ["Amy D Willis <adwillis@uw.edu>"],
+            required_r_version: "R (>= 3.5.0)",
+            title: "Species Richness Estimation and Modeling"
+          )
+        )
+    end
+  end
 end

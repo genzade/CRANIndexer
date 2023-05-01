@@ -95,8 +95,7 @@ RSpec.describe CranService::AttributesBuilder do
           dependencies: nil,
           date_publication_at: DateTime.parse("2018-04-24 10:28:19 UTC"),
           title: "Tools, Measures and Statistical Tests for Cultural Evolution",
-          authors: ["Kevin Stadler [aut, cre]"],
-          # authors: ["Kevin Stadler"],
+          authors: ["Kevin Stadler"],
           maintainers: ["Kevin Stadler <a00425926@unet.univie.ac.at>"],
           license: "MIT + file LICENSE"
         )
@@ -126,6 +125,46 @@ RSpec.describe CranService::AttributesBuilder do
           authors: [],
           maintainers: ["James A. Fellows Yates <jfy133@gmail.com>"],
           license: nil
+        )
+      end
+    end
+
+    context "when the author has more than 2 names" do
+      it "builds the attributes from passed in hash" do
+        dcf_hash = {
+          "Package" => "cultevo",
+          "Title" => "Tools, Measures and Statistical Tests for Cultural Evolution",
+          "Version" => "1.0.2",
+          "Date" => "2018-04-24",
+          "Authors@R" => "person(\"Kevin Stadler\", role=c(\"aut\", \"cre\"), email=\"a00425926@unet.univie.ac.at\")",
+          "URL" => "https://kevinstadler.github.io/cultevo/",
+          "BugReports" => "https://github.com/kevinstadler/cultevo/issues",
+          "Encoding" => "UTF-8",
+          "License" => "MIT + file LICENSE",
+          "Imports" => "combinat, grDevices, graphics, Hmisc, pspearman, stats,\nstringi, utils",
+          "Suggests" => "memoise, knitr, rmarkdown",
+          "RoxygenNote" => "6.0.1",
+          "VignetteBuilder" => "knitr",
+          "NeedsCompilation" => "no",
+          "Packaged" => "2018-04-24 09:50:38 UTC; kevin",
+          "Author" => "James A. Fellows Yates",
+          "Maintainer" => "Kevin Stadler <a00425926@unet.univie.ac.at>",
+          "Repository" => "CRAN",
+          "Date/Publication" => "2018-04-24 10:28:19 UTC"
+        }
+
+        attributes_builder = CranService::AttributesBuilder.new(dcf_hash)
+
+        expect(attributes_builder.call).to eq(
+          name: "cultevo",
+          version: "1.0.2",
+          authors: ["James A. Fellows Yates"],
+          date_publication_at: DateTime.parse("2018-04-24 10:28:19 UTC"),
+          dependencies: nil,
+          license: "MIT + file LICENSE",
+          maintainers: ["Kevin Stadler <a00425926@unet.univie.ac.at>"],
+          required_r_version: nil,
+          title: "Tools, Measures and Statistical Tests for Cultural Evolution"
         )
       end
     end
