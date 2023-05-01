@@ -2,6 +2,7 @@
 
 require "open-uri"
 require "rubygems/package"
+require "control_file_parser"
 
 module CranService
   class PackageBuilder
@@ -13,7 +14,7 @@ module CranService
       zfile = Zlib::GzipReader.new(package_file)
 
       Gem::Package::TarReader.new(zfile).seek("#{package_name}/DESCRIPTION") do |entry|
-        dcf_hash ||= DebControl::ControlFileBase.parse(entry.read).first
+        dcf_hash ||= ControlFileParser.parse(entry.read).first
         package_attrs = build_attributes(dcf_hash)
 
         create_package(package_attrs)

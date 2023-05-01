@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "open-uri"
+require "control_file_parser"
 
 module RPackagesAdapter
   module Cran
@@ -10,7 +11,7 @@ module RPackagesAdapter
       end
 
       def call
-        RPackagesAdapter::ControlFileParser.parse(raw_cran_packages.read)
+        ControlFileParser.parse(raw_cran_packages.read)
       end
 
       private
