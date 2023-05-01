@@ -1,24 +1,49 @@
-# README
+# CRANIndexer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an app that indexes R packages from [CRAN server](https://cran.r-project.org/src/contrib).
 
-Things you may want to cover:
+Some of the features include;
 
-* Ruby version
+- an index page to display all the packages
+- background cron job that builds packages
 
-* System dependencies
+Coming soon;
 
-* Configuration
+- search packages by name
 
-* Database creation
+## Prerequisites
 
-* Database initialization
+The setups steps expect following tools installed on the system.
 
-* How to run the test suite
+- Github
+- Ruby 3.1.2
+- Rails 7.1
+- Docker
+- docker-compose
 
-* Services (job queues, cache servers, search engines, etc.)
+### 1. Check out the repository
 
-* Deployment instructions
+```bash
+git clone git@github.com:genzade/CRANIndexer.git
+cd CRANIndexer
+```
 
-* ...
+### 2. Build the app
+
+```bash
+docker-compose up --build --renew-anon-volumes
+```
+
+And now you can visit the site with the URL `http://localhost:3000`
+
+### 3. Seed data
+
+```bash
+docker-compose exec -it -e RAILS_ENV=development app bin/rails db:seed
+```
+
+### 4. Run tests (specs)
+
+```bash
+docker-compose exec -it -e RAILS_ENV=test app bin/rspec
+```
