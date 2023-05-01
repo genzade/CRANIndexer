@@ -1,0 +1,6 @@
+---
+r_package_builder:
+  args:
+    task: cran:build_r_packages:run
+  cron: 0 4 * * *
+  class: InvokeRakeTaskJob
