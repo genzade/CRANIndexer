@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "sidekiq/web"
+require "sidekiq/cron/web"
+
 Rails.application.routes.draw do
   resources :packages, only: %i[index show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -10,4 +13,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "packages#index"
+
+  mount Sidekiq::Web => "/sidekiq"
 end
