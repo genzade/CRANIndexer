@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PackagesController < ApplicationController
+  include Pagy::Backend
   # before_action :set_package, only: %i[show edit update destroy]
 
   # GET /packages

@@ -48,6 +48,8 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "deb_control", "~> 0.0.1"
+gem "pagy", "~> 6.0"
+gem "ransack", "~> 4.0"
 gem "sidekiq", "~> 7.0", ">= 7.0.9"
 gem "sidekiq-cron", "~> 1.10"
 
