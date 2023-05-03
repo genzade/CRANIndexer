@@ -5,7 +5,22 @@
 
   <p class="text-2xl font-bold mb-5">R Packages</p>
 
-  <div id="packages" class="min-w-full">
-    <%= render @packages %>
-  </div>
+  <%= Time.zone.now %>
+
+  <%= search_form_for(@q, data: { turbo_frame: :results }) do |form| %>
+    <%= form.label(:name_cont) %>
+    <%= form.search_field(:name_cont, oninput: "this.form.requestSubmit()", autofocus: true, autocomplete: "off") %>
+  <% end %>
+
+  <%= turbo_frame_tag(:results) do %>
+    <%= Time.zone.now %>
+
+    <div id="packages" class="min-w-full">
+      <% @packages.each do |package| %>
+        <%= render(package) %>
+      <% end %>
+    </div>
+
+    <%= turbo_frame_tag(:pagination, loading: :lazy, src: packages_path(format: :turbo_stream)) %>
+  <% end %>
 </div>

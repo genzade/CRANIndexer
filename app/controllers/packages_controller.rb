@@ -6,7 +6,9 @@ class PackagesController < ApplicationController
 
   # GET /packages
   def index
-    @packages = Package.all
+    @q = Package.ransack(params[:q])
+    @pagy, @packages = pagy(@q.result(distinct: true).order(:name), items: 10)
+    # @packages = Package.all
   end
 
   # GET /packages/1
